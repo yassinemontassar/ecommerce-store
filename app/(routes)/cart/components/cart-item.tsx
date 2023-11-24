@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
 import { X } from "lucide-react";
@@ -8,20 +9,31 @@ import useCart from "@/hooks/use-cart";
 import { Product } from "@/types";
 
 
+
+// ... existing imports
+
 interface CartItemProps {
   data: Product;
 }
 
-const CartItem: React.FC<CartItemProps> = ({
-  data
-}) => {
+const CartItem: React.FC<CartItemProps> = ({ data }) => {
   const cart = useCart();
+  const [quantity, setQuantity] = useState(1);
 
   const onRemove = () => {
     cart.removeItem(data.id);
   };
 
-  return ( 
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuantity = parseInt(e.target.value, 10) || 1;
+    setQuantity(newQuantity);
+    cart.updateQuantity(data.id,newQuantity )
+  };
+
+  // Convert the product price to a number before multiplication
+  const productPrice = parseFloat(data.price);
+
+  return (
     <li className="flex py-6 border-b">
       <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
         <Image
@@ -37,20 +49,30 @@ const CartItem: React.FC<CartItemProps> = ({
         </div>
         <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
           <div className="flex justify-between">
-            <p className=" text-lg font-semibold text-black">
-              {data.name}
-            </p>
+            <p className="text-lg font-semibold text-black">{data.name}</p>
           </div>
-
           <div className="mt-1 flex text-sm">
             <p className="text-gray-500">{data.color.name}</p>
-            <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">{data.size.name}</p>
+            <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">
+              {data.size.name}
+            </p>
           </div>
-          <Currency value={data.price} />
+          <div className="flex mt-2">
+            <label className="text-gray-500">Quantity:</label>
+            <input
+              type="number"
+              min="1"
+              value={quantity}
+              onChange={handleQuantityChange}
+              className="ml-2 p-1 border border-gray-300 rounded-md w-9"
+            />
+          </div>
+          {/* Use the converted productPrice for multiplication */}
+          <Currency value={productPrice * quantity} />
         </div>
       </div>
     </li>
   );
-}
- 
+};
+
 export default CartItem;

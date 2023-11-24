@@ -39,6 +39,7 @@ const Summary = () => {
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
         productIds: items.map((item) => item.id),
+        quantity: items.map((item) => item.quantity),
         address,
         phoneNumber,
       });
@@ -65,7 +66,7 @@ const Summary = () => {
   };
 
   const totalPrice = items.reduce((total, item) => {
-    return total + Number(item.price);
+    return total + Number(item.price)* item.quantity;
   }, 0);
 
   return (
