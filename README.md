@@ -1,24 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Media Preview:
 
-## Getting Started
+![image](https://github.com/yassinemontassar/ecommerce-store/assets/117606968/38f26873-bc4b-48d0-96ba-17bb2dd84a49)
+![image](https://github.com/yassinemontassar/ecommerce-store/assets/117606968/acbd75ac-0a73-449d-957d-69a0f48454a6)
+![image](https://github.com/yassinemontassar/ecommerce-store/assets/117606968/88376b6c-cc4a-4f8b-bbac-10134d469a10)
+![image](https://github.com/yassinemontassar/ecommerce-store/assets/117606968/552a2b22-9905-4bc3-995e-0248be99dadc)
+![image](https://github.com/yassinemontassar/ecommerce-store/assets/117606968/4fd9e4fe-eea9-4d04-84d0-c95e7d3c45cb)
+![image](https://github.com/yassinemontassar/ecommerce-store/assets/117606968/5c7c7acb-103e-4a22-bbc1-a4b3d03a6a9b)
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Learn More
 
