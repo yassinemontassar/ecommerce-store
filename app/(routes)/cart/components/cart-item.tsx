@@ -64,7 +64,8 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
               min="1"
               value={quantity}
               onChange={handleQuantityChange}
-              className="ml-2 p-1 border border-gray-300 rounded-md w-9"
+              inputMode="numeric"
+              className="ml-2 p-1 border border-gray-300 rounded-md w-12"
             />
           </div>
           {/* Use the converted productPrice for multiplication */}
