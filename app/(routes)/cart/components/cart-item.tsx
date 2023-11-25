@@ -8,17 +8,17 @@ import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
 import { Product } from "@/types";
 
-
-
-// ... existing imports
-
 interface CartItemProps {
   data: Product;
 }
 
 const CartItem: React.FC<CartItemProps> = ({ data }) => {
   const cart = useCart();
-  const [quantity, setQuantity] = useState(1);
+  const items = useCart((state) => state.items);
+  const [quantity, setQuantity] = useState(() => {
+    const storedItem = items.find((item) => item.id === data.id);
+    return storedItem ? storedItem.quantity : 1;
+  });
 
   const onRemove = () => {
     cart.removeItem(data.id);

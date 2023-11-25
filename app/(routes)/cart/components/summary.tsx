@@ -81,7 +81,7 @@ const Summary = () => {
       </div>
 
       {/* Button to open the modal */}
-      <Button onClick={openModal} disabled={items.length === 0} className="w-full mt-6">
+      <Button onClick={openModal}  disabled={items.length === 0 || items.map(item => item.quantity).includes(0)} className="w-full mt-6">
         Enter Details
       </Button>
 
