@@ -16,6 +16,9 @@ const Summary = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [isCheckingOut, setCheckingOut] = useState(false);
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
+  const [checkoutInitiated, setCheckoutInitiated] = useState(false);
 
   useEffect(() => {
     if (searchParams.get('success') !== null) {
@@ -28,28 +31,39 @@ const Summary = () => {
     }
   }, [searchParams, removeAll]);
 
+  useEffect(() => {
+    setButtonDisabled(isCheckingOut || items.length === 0 || !phoneNumber || !address || checkoutInitiated);
+  }, [isCheckingOut, items, phoneNumber, address, checkoutInitiated]);
+
   const onCheckout = async () => {
-    if (!phoneNumber || !address || items.length === 0) {
-      // If any of them is empty, prevent checkout
-      toast.error("Enter your details first!");
+    if (!phoneNumber || !address || items.length === 0 || isCheckingOut || isButtonDisabled) {
+      // If any of them is empty or checkout is in progress, prevent checkout
+      toast.error("Enter your details first or wait for the current checkout to complete!");
       return;
     }
 
-
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
-        productIds: items.map((item) => item.id),
-        quantity: items.map((item) => item.quantity),
-        address,
-        phoneNumber,
-      });
+      if (!checkoutInitiated) {
+        setCheckoutInitiated(true); // Set flag to prevent further clicks
+        setCheckingOut(true); // Set loading state
 
-      window.location = response.data.url;
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
+          productIds: items.map((item) => item.id),
+          quantity: items.map((item) => item.quantity),
+          address,
+          phoneNumber,
+        });
+
+        window.location = response.data.url;
+      }
     } catch (error) {
       console.error("Error during checkout:", error);
-     
+      // Handle error, display error toast, etc.
+    } finally {
+      setCheckingOut(false); // Reset loading state, whether success or failure
     }
   };
+
 
   const openModal = () => {
     setModalOpen(true);
@@ -93,10 +107,10 @@ const Summary = () => {
       {/* Button to trigger the API request */}
       <Button
         onClick={onCheckout}
-        disabled={items.length === 0 || !phoneNumber || !address}
-        className={`w-full mt-6 ${items.length === 0 || !phoneNumber || !address ? 'cursor-not-allowed opacity-50' : ''}`}
+        disabled={isButtonDisabled}
+        className={`w-full mt-6 ${isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
       >
-        Checkout
+        {isCheckingOut ? "Checking out..." : "Checkout"}
       </Button>
     </div>
   );
