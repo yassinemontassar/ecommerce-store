@@ -110,7 +110,7 @@ const Summary = () => {
         disabled={isButtonDisabled}
         className={`w-full mt-6 ${isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
       >
-        {isCheckingOut ? "Checking out..." : "Checkout"}
+        {isCheckingOut ? "Loading..." : "Checkout"}
       </Button>
     </div>
   );
