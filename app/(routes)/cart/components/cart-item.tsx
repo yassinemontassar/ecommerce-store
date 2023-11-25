@@ -25,7 +25,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
   };
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuantity = parseInt(e.target.value, 10) || 1;
+    const newQuantity = parseInt(e.target.value, 10) || 0;
     setQuantity(newQuantity);
     cart.updateQuantity(data.id,newQuantity )
   };
@@ -61,8 +61,9 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
             <label className="text-gray-500">Quantity:</label>
             <input
               type="number"
+              pattern="[0-9]*"  // Allow only numeric input
+              value={quantity <= 0 ? '' : quantity} 
               min="1"
-              value={quantity}
               onChange={handleQuantityChange}
               inputMode="numeric"
               className="ml-2 p-1 border border-gray-300 rounded-md w-12"
