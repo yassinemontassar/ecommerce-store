@@ -20,12 +20,13 @@ const Summary = () => {
   const [isCheckingOut, setCheckingOut] = useState(false);
   const [isButtonDisabled, setButtonDisabled] = useState(false);
   const [checkoutInitiated, setCheckoutInitiated] = useState(false);
-
+  const [showConfetti, setShowConfetti] = useState(false);
   useEffect(() => {
     if (searchParams.get('success') !== null) {
       removeAll();
       toast.success('Payment completed.');
       setShowConfetti(true);
+      
     }
 
     if (searchParams.get('canceled')) {
@@ -37,20 +38,8 @@ const Summary = () => {
     setButtonDisabled(isCheckingOut || items.length === 0 || !phoneNumber || !address || checkoutInitiated);
   }, [isCheckingOut, items, phoneNumber, address, checkoutInitiated]);
 
-  const [showConfetti, setShowConfetti] = useState(false);
-  return (
-    <>
-      {/* Other components and JSX here */}
-      {showConfetti && (
-        <Confetti
-          width={window.innerWidth}
-          height={window.innerHeight}
-          recycle={true}
-          numberOfPieces={1500}
-        />
-      )}
-    </>
-  );
+
+  
   const onCheckout = async () => {
     if (!phoneNumber || !address || items.length === 0 || isCheckingOut || isButtonDisabled) {
       // If any of them is empty or checkout is in progress, prevent checkout
@@ -100,6 +89,7 @@ const Summary = () => {
   }, 0);
 
   return (
+    
     <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
       <h2 className="text-lg font-medium text-gray-900">Order summary</h2>
 
@@ -120,6 +110,15 @@ const Summary = () => {
         <p>Enter your address and phone number details here!</p>
       </CustomModal>
 
+        {/* Confetti */}
+        {showConfetti && (
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            recycle={true}
+            numberOfPieces={1500}
+          />
+        )}
       {/* Button to trigger the API request */}
       <Button
         onClick={onCheckout}
@@ -129,6 +128,7 @@ const Summary = () => {
         {isCheckingOut ? "Loading..." : "Checkout"}
       </Button>
     </div>
+    
   );
 };
 
