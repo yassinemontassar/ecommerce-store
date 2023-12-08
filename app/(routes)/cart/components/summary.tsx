@@ -8,6 +8,7 @@ import useCart from "@/hooks/use-cart";
 import CustomModal from "@/components/ui/customModal";
 import toast from "react-hot-toast";
 import { useSearchParams } from "next/navigation";
+import Confetti from "react-confetti";
 
 const Summary = () => {
   const searchParams = useSearchParams();
@@ -24,6 +25,7 @@ const Summary = () => {
     if (searchParams.get('success') !== null) {
       removeAll();
       toast.success('Payment completed.');
+<Confetti width={window.innerWidth} height={window.innerHeight} recycle={true} numberOfPieces={1500} />
     }
 
     if (searchParams.get('canceled')) {
