@@ -24,8 +24,9 @@ const Summary = () => {
   useEffect(() => {
     if (searchParams.get('success') !== null) {
       removeAll();
-      toast.success('Payment completed.');
-      <Confetti width={window.innerWidth} height={window.innerHeight} recycle={true} numberOfPieces={1500} />
+      toast.success('Payment completedd.');
+
+      <Confetti recycle={true} numberOfPieces={1500} />
     }
 
     if (searchParams.get('canceled')) {
