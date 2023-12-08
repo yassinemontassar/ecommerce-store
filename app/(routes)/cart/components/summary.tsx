@@ -115,8 +115,8 @@ const Summary = () => {
           <Confetti
             width={window.innerWidth}
             height={window.innerHeight}
-            recycle={true}
-            numberOfPieces={1500}
+            recycle={false}
+            numberOfPieces={1000}
           />
         )}
       {/* Button to trigger the API request */}
