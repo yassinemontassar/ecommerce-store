@@ -25,6 +25,7 @@ const Summary = () => {
     if (searchParams.get('success') !== null) {
       removeAll();
       toast.success('Payment completed.');
+      <Confetti width={window.innerWidth} height={window.innerHeight} recycle={true} numberOfPieces={1500} />
     }
 
     if (searchParams.get('canceled')) {
