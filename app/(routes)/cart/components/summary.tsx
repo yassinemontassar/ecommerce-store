@@ -24,9 +24,8 @@ const Summary = () => {
   useEffect(() => {
     if (searchParams.get('success') !== null) {
       removeAll();
-      toast.success('Payment completedd.');
-
-      <Confetti recycle={true} numberOfPieces={1500} />
+      toast.success('Payment completed.');
+      setShowConfetti(true);
     }
 
     if (searchParams.get('canceled')) {
@@ -38,6 +37,20 @@ const Summary = () => {
     setButtonDisabled(isCheckingOut || items.length === 0 || !phoneNumber || !address || checkoutInitiated);
   }, [isCheckingOut, items, phoneNumber, address, checkoutInitiated]);
 
+  const [showConfetti, setShowConfetti] = useState(false);
+  return (
+    <>
+      {/* Other components and JSX here */}
+      {showConfetti && (
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          recycle={true}
+          numberOfPieces={1500}
+        />
+      )}
+    </>
+  );
   const onCheckout = async () => {
     if (!phoneNumber || !address || items.length === 0 || isCheckingOut || isButtonDisabled) {
       // If any of them is empty or checkout is in progress, prevent checkout
