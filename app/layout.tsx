@@ -12,8 +12,8 @@ import NewsletterForm from '@/components/NewsletterForm'
 const font = Urbanist({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Store',
-  description: 'Store - The place for all your purchases.',
+  title: 'RoundaStore',
+  description: 'RoundaStore - Tunisian local store, The place for all your purchases.',
 }
 
 export default function RootLayout({
