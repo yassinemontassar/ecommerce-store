@@ -99,7 +99,7 @@ const NewsletterForm = () => {
         <br />
 
         Powered By
-        <a href="" className="text-gray-700 underline transition hover:text-gray-700/75"> Yassine Montassar</a>
+        <a href="https://github.com/yassinemontassar" className="text-gray-700 underline transition hover:text-gray-700/75"> Yassine Montassar</a>
         
         
       </p>
