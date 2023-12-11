@@ -7,6 +7,7 @@ import Footer from '@/components/footer'
 import './globals.css'
 import ModalProvider from '@/providers/modal-provider'
 import ToastProvider from '@/providers/toast-provider'
+import NewsletterForm from '@/components/NewsletterForm'
 
 const font = Urbanist({ subsets: ['latin'] })
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <NewsletterForm />
       </body>
     </html>
   )
