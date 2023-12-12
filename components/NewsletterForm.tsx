@@ -1,7 +1,78 @@
-import React from 'react'
+"use client";
+import React, { useEffect, useState } from 'react'
+import Button from './ui/button';
+import useKeyManager from '@/hooks/use-key';
+import toast from "react-hot-toast";
+import axios from 'axios';
+import { useSearchParams } from 'next/navigation';
+import Confetti from "react-confetti";
+
+interface ConvertToPDFResult {
+  handleConvertToPDF: (event: React.FormEvent) => Promise<void>;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  isButtonDisabled: boolean;
+}
+
+const useConvertToPDF = (): ConvertToPDFResult => {
+  const { addKey, getKey } = useKeyManager();
+  const [email, setEmail] = useState('');
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
+
+  const handleConvertToPDF = async (event: React.FormEvent) => {
+    event.preventDefault();
+    addKey();
+    setButtonDisabled(true);
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/verify`, {
+        email: email,
+        token: getKey()
+      });
+      toast.success("We have sent a verification link to your mail: "+email);
+      // window.location = response.data.url;
+    } catch (error) {
+      console.error("Error during verification:", error);
+      toast.error("Email already exists")
+    }
+   finally {
+    setButtonDisabled(false); // Enable the button after the process is done
+  }
+  };
+
+  return { handleConvertToPDF, setEmail, isButtonDisabled   };
+};
 
 const NewsletterForm = () => {
+
+  const { handleConvertToPDF, setEmail, isButtonDisabled   } = useConvertToPDF();
+  const [showConfetti, setShowConfetti] = useState(false);
+  const searchParams = useSearchParams();
+  const { removeKey, getKey } = useKeyManager();
+  useEffect(() => {
+    const fetchData = async () => {
+      if (searchParams.get("token") === getKey() && searchParams.get('token') !== null) {
+        removeKey();
+       
+        const email = searchParams.get('email');
+        try {
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/subscriber`, {
+            email: email,
+          });
+          toast.success('Your email (' + email + ') is now verified!');
+          setShowConfetti(true);
+        } catch (error) {
+          console.error("Error during verification:", error);
+          toast.error("Email already exists or not verified");
+        }
+        
+      }
+    };
+  
+    fetchData(); // Call the async function
+  
+  }, [searchParams, removeKey, getKey, setShowConfetti]);
+
     return (
+      
         <footer >
             
   <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
@@ -9,8 +80,15 @@ const NewsletterForm = () => {
       <strong className="block text-center text-xl font-bold text-gray-900 sm:text-3xl">
         Want us to email you with the latest news?
       </strong>
-
-      <form className="mt-6">
+      {showConfetti && (
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            recycle={false}
+            numberOfPieces={1000}
+          />
+        )}
+      <form onSubmit={handleConvertToPDF} >
         <div className="relative max-w-lg">
           <label className="sr-only" htmlFor="email"> Email </label>
 
@@ -19,13 +97,18 @@ const NewsletterForm = () => {
             id="email"
             type="email"
             placeholder="john@doe.com"
+            required
+            onChange={(e) => setEmail(e.target.value)}
           />
 
-          <button
+          <Button
+            disabled={isButtonDisabled}
             className="animate-pulse absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700"
           >
             Subscribe
-          </button>
+          </Button>
+            {/* Confetti */}
+        
         </div>
       </form>
     </div>
