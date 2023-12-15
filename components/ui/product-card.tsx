@@ -79,7 +79,7 @@ const ProductCard: React.FC<ProductCard> = ({
             <span className="text-sm text-gray-500 line-through">
              <Currency value={data?.price} />
              </span>
-            <Currency value={data?.price - (data?.price * data?.discount) / 100} />
+             <Currency value={ (Number(data?.price)) - (Number(data?.price)) * (Number(data?.discount)) / 100} />
             </div>
             ) : (
                 <div className="flex items-center justify-between">
@@ -87,9 +87,7 @@ const ProductCard: React.FC<ProductCard> = ({
                 </div>
             )}
        
-          
-
-
+        
 
         </div>
     );
