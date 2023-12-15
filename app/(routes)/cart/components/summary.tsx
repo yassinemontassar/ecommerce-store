@@ -85,7 +85,7 @@ const Summary = () => {
   };
 
   const totalPrice = items.reduce((total, item) => {
-    return total + Number(item.price)* item.quantity;
+    return total + (Number(item.price || 0) - (Number(item.price || 0) * (Number(item.discount) || 0) / 100)) * item.quantity;
   }, 0);
 
   return (

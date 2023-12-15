@@ -31,7 +31,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
   };
 
   // Convert the product price to a number before multiplication
-  const productPrice = parseFloat(data.price);
+  const productPrice = parseFloat(data.price) - (parseFloat(data.price) * (parseFloat(data.discount) || 0) / 100) || 0;
 
   return (
     <li className="flex py-6 border-b">
