@@ -34,7 +34,6 @@ const ProductCard: React.FC<ProductCard> = ({
         event.stopPropagation();
         cart.addItem(data,1);
     }
-
     return (
         <div onClick={handleClick} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
            {/* images and actions */}
@@ -48,6 +47,10 @@ const ProductCard: React.FC<ProductCard> = ({
                     placeholder="empty"
                     className="aspect-square object-cover rounded-md"
                 />
+                { data.discount &&
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-pink-500 to-purple-600 text-white py-1 px-2 rounded-full shadow-lg transform -rotate-6 hover:-rotate-12 transition-transform">
+      <span className="text-xs font-semibold">Discount</span> {data.discount} %
+    </div> }
                 <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
                     <div className="flex gap-x-6 justify-center">
                         <IconButton 
@@ -71,9 +74,23 @@ const ProductCard: React.FC<ProductCard> = ({
             </p>
            </div>
            {/* Price */}
-           <div className="flex items-center justify-between">
+           {data?.discount ? (
+           <div className="flex items-center space-x-2">
+            <span className="text-sm text-gray-500 line-through">
+             <Currency value={data?.price} />
+             </span>
+            <Currency value={data?.price - (data?.price * data?.discount) / 100} />
+            </div>
+            ) : (
+                <div className="flex items-center justify-between">
                 <Currency value={data?.price} />
-           </div>
+                </div>
+            )}
+       
+          
+
+
+
         </div>
     );
 }

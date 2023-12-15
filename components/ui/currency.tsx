@@ -24,9 +24,13 @@ const Currency: React.FC<CurrencyProps> = ({
     return null;
   }
 
+  const formattedValue = formatter.format(Number(value));
+  const currencySymbol = formattedValue.replace(/[0-9.,]/g, '').trim();
+  const numericValue = formattedValue.replace(/[^0-9.,]/g, '').trim();
+
   return ( 
     <div className="font-semibold">
-      {formatter.format(Number(value))}
+      {numericValue} {currencySymbol}
     </div>
   );
 }
