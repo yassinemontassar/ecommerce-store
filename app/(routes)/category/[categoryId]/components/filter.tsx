@@ -39,7 +39,7 @@ const onClick = (id: string) => {
         query
     }, {skipNull: true});
 
-    router.push(url);
+    router.push(url,{ scroll: false })
 }
     return (
         <div className="mt-6">
