@@ -26,7 +26,7 @@ const SearchBar: React.FC = () => {
       setSearchQuery('');
   };
   return (
-    <div className="ml-auto flex items-center gap-x-2">
+    <div className="hidden sm:flex ml-auto  items-center gap-x-2">
       <input
         type="text"
         placeholder="Search..."
