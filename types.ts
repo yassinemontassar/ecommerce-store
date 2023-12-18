@@ -38,3 +38,8 @@ export interface Product {
     name: string;
     value: string;
   };
+
+  export interface prices {
+    id: string;
+    name: string;
+  };

@@ -19,6 +19,7 @@ interface CategoryPageProps {
     searchParams: {
         colorId: string; 
         sizeId: string;
+        price: string;
         page: string;
         per_page: string;
     }
@@ -32,13 +33,21 @@ const CategoryPage: React.FC<CategoryPageProps>= async({
         categoryId: params.categoryId,
         colorId: searchParams.colorId,
         sizeId: searchParams.sizeId,
+        price: searchParams.price
         
     });
     const sizes= await getSizes();
     const colors = await getColors();
     const category = await getCategory(params.categoryId);
+    const prices = [
+        { id: "20", name: "0 - 20TND" },
+        { id: "50", name: "0 - 50TND" },
+        { id: "70", name: "0 -70TND " },
+        { id: "100", name: "0 -100TND " },
+        // Add more ranges as needed
+      ];
     const page = searchParams['page'] ?? '1'
-    const per_page = searchParams['per_page'] ?? '3'
+    const per_page = searchParams['per_page'] ?? '6'
   
     // mocked, skipped and limited in the real app
     const start = (Number(page) - 1) * Number(per_page) // 0, 5, 10 ...
@@ -53,7 +62,7 @@ const CategoryPage: React.FC<CategoryPageProps>= async({
                 />
                 <div className="px-4 sm:px-6 lg:px-8 pb-24">
                     <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
-                       <MobileFilters sizes={sizes} colors={colors}  />
+                       <MobileFilters sizes={sizes} colors={colors} prices={prices}  />
                         <div className="hidden lg:block">
                             <Filter 
                                 valueKey="sizeId"
@@ -65,6 +74,7 @@ const CategoryPage: React.FC<CategoryPageProps>= async({
                                 name="Colors"
                                 data={colors}
                             />
+                             <Filter valueKey="price" name="Prices" data={prices} />
                         </div>
                         <div className="mt-6 lg:col-span-4 lg:mt-0">
                             {products.length === 0 && <NoResults />}

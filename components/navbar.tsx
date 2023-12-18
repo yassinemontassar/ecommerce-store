@@ -4,8 +4,7 @@ import MainNav from "@/components/main-nav";
 import Container from "@/components/ui/container";
 import getCategories from "@/actions/get-categories";
 import NavbarActions from "@/components/narvbar-actions";
-
-
+import SearchBar from "@/components/search"
 
 const Navbar = async () => {
   const categories = await getCategories(); 
@@ -19,6 +18,7 @@ const Navbar = async () => {
             <p className="font-bold text-xl">RoundaStore</p>
           </Link>
           <MainNav data={categories} />
+          <SearchBar />
           <NavbarActions />
         </div>
       </Container>
