@@ -1,5 +1,5 @@
 "use client";
-import { ArrowUp, ArrowUp01, ArrowUp01Icon, ArrowUp10, ArrowUpCircle, ArrowUpCircleIcon, ArrowUpFromDot, ArrowUpSquareIcon } from 'lucide-react';
+import { ArrowUp} from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 
@@ -28,7 +28,7 @@ const ScrollToTopButton: React.FC = () => {
 
   return (
     <button
-      className={`fixed bottom-8 right-8 bg-blue-500 p-2 rounded-full text-white animate-bounce z-[100] ${
+      className={`fixed bottom-8 right-8 bg-blue-500 p-2 rounded-full text-white animate- z-[100] ${
         isVisible ? 'visible' : 'invisible'
       }`}
       onClick={scrollToTop}
