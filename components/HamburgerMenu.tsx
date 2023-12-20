@@ -47,7 +47,7 @@ const HamburgerMenu: React.FC<MainNavProps> = ({ data }) => {
           <span  className="sr-only">Toggle menu</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 hover:animate-spin"
+            className="h-6 w-6 hover:animate-spin "
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
