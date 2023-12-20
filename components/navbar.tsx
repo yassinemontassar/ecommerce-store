@@ -5,12 +5,14 @@ import getCategories from "@/actions/get-categories";
 import NavbarActions from "@/components/narvbar-actions";
 import SearchBar from "@/components/search"
 import HamburgerMenu from "./HamburgerMenu";
+import ScrollToTopButton from "./ScrollToTopButton";
 const Navbar = async () => {
   const categories = await getCategories(); 
  
 
   return ( 
     <div className="border-b">
+      <ScrollToTopButton />
       <Container>
       <header className="bg-white">
   <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
