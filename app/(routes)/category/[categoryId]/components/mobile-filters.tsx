@@ -18,6 +18,13 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({ sizes, colors, prices }) 
   const [open, setOpen] = useState(false);
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
+  const handleFilterSelection = () => {
+    // Add logic here to handle filter selection if needed
+    // ...
+
+    // Close the dialog
+    onClose();
+  };
   return (
     <>
       <Button
@@ -45,9 +52,9 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({ sizes, colors, prices }) 
             </div>
             {/* Render the filters */}
             <div className="p-4">
-              <Filter valueKey="sizeId" name="Sizes" data={sizes} />
-              <Filter valueKey="colorId" name="Colors" data={colors} />
-              <Filter valueKey="price" name="Prices" data={prices} />
+              <Filter valueKey="sizeId" name="Sizes" data={sizes} onSelect={handleFilterSelection} />
+              <Filter valueKey="colorId" name="Colors" data={colors} onSelect={handleFilterSelection} />
+              <Filter valueKey="price" name="Prices" data={prices} onSelect={handleFilterSelection} />
             </div>
           </Dialog.Panel>
         </div>

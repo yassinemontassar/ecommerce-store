@@ -10,12 +10,14 @@ interface FilterProps {
     data: (Size | Color | prices)[];
     name: string;
     valueKey: string;
+    onSelect: () => void;
 }
 
 const Filter: React.FC<FilterProps> = ({
     data, 
     name,
-    valueKey
+    valueKey,
+    onSelect
 }) => {
 const searchParams= useSearchParams();
 const router = useRouter();
@@ -40,6 +42,7 @@ const onClick = (id: string) => {
     }, {skipNull: true});
 
     router.push(url,{ scroll: false })
+    onSelect();
 }
     return (
         <div className="mt-6">
