@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCard> = ({
 
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
-        cart.addItem(data,1);
+        cart.addItem(data,1,'');
     }
     return (
         <div onClick={handleClick} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
