@@ -19,6 +19,10 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
     const storedItem = items.find((item) => item.id === data.id);
     return storedItem ? storedItem.quantity : 1;
   });
+  const [Taille, setTaille] = useState(() => {
+    const storedItem = items.find((item) => item.id === data.id);
+    return storedItem ? storedItem.taille : "";
+  });
 
   const onRemove = () => {
     cart.removeItem(data.id);
@@ -28,6 +32,12 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
     const newQuantity = parseInt(e.target.value, 10) || 0;
     setQuantity(newQuantity);
     cart.updateQuantity(data.id,newQuantity )
+  };
+
+  const handleTailleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newTaille = e.target.value;
+    setTaille(newTaille);
+    cart.updateTaille(data.id,newTaille )
   };
 
   // Convert the product price to a number before multiplication
@@ -52,23 +62,53 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
             <p className="text-lg font-semibold text-black">{data.name}</p>
           </div>
           <div className="mt-1 flex text-sm">
-            <p className="text-gray-500">{data.color.name}</p>
-            <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">
-              {data.size.name}
-            </p>
+            <p className="text-gray-500">Coleur:</p>
+            <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500"/>
+            <div 
+        className="h-5 w-5 rounded-full border"
+        style={{ backgroundColor: data.color.value}}
+        />
+          
           </div>
-          <div className="flex mt-2">
-            <label className="text-gray-500">Quantity:</label>
-            <input
-              type="number"
-              pattern="[0-9]*"  // Allow only numeric input
-              value={quantity <= 0 ? '' : quantity} 
-              min="1"
-              onChange={handleQuantityChange}
-              inputMode="numeric"
-              className="ml-2 p-1 border border-gray-300 rounded-md w-12"
-            />
-          </div>
+          <div>
+  <div className="flex mt-2 items-center">
+    <label className="text-gray-500">Quantity:</label>
+    <div className="ml-2 p-1  border-gray-300 rounded-md">
+      <input
+        required
+        type="number"
+        pattern="[0-9]*"
+        value={quantity <= 0 ? '' : quantity} 
+        min="1"
+        onChange={handleQuantityChange}
+        inputMode="numeric"
+        className="p-1 border border-gray-300 rounded-md w-12"
+      />
+    </div>
+  </div>
+  <div className="flex mt-2 items-center">
+    <label className="text-gray-500">Taille:</label>
+    <div className="ml-5 p-1  border-gray-300 rounded-md">
+      <select style={{ overflowY: 'auto' }}
+        required
+        className="ml-2 p-1 border border-gray-300 rounded-md"
+        value={Taille}
+        onChange={handleTailleChange}
+      >
+        <option value="" disabled>
+        Choisir la taille
+  </option>
+        {data.size.value.split(',').map((size) => (
+        <option key={size} value={size}>
+          {size}
+        </option>
+      ))}
+      </select>
+    </div>
+  </div>
+</div>
+
+          
           {/* Use the converted productPrice for multiplication */}
           <Currency value={productPrice * quantity} />
         </div>

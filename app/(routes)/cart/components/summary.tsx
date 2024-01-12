@@ -55,6 +55,7 @@ const Summary = () => {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
           productIds: items.map((item) => item.id),
           quantity: items.map((item) => item.quantity),
+          taille: items.map((item) => item.taille),
           address,
           phoneNumber,
         });
@@ -71,6 +72,8 @@ const Summary = () => {
 
 
   const openModal = () => {
+    const hasItemWithEmptySize = items.map(item => item.taille)
+    console.log(hasItemWithEmptySize)
     setModalOpen(true);
   };
 
@@ -101,7 +104,7 @@ const Summary = () => {
       </div>
 
       {/* Button to open the modal */}
-      <Button onClick={openModal}  disabled={items.length === 0 || items.map(item => item.quantity).includes(0)} className="w-full mt-6">
+      <Button onClick={openModal}  disabled={items.length === 0 || items.map(item => item.quantity).includes(0) || items.some(item => item.taille === '')} className="w-full mt-6">
         Enter Details
       </Button>
 

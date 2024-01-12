@@ -7,14 +7,16 @@ import { AlertTriangle } from 'lucide-react';
 
 interface CartItem extends Product {
   quantity: number;
+  taille: string;
 }
 
 interface CartStore {
   items: CartItem[];
-  addItem: (data: Product, quantity: number) => void;
+  addItem: (data: Product, quantity: number, taille: string) => void;
   removeItem: (id: string) => void;
   removeAll: () => void;
   updateQuantity: (id: string, quantity: number) => void;
+  updateTaille: (id: string, taille: string) => void;
 }
 
 const useCart = create(
@@ -28,7 +30,7 @@ const useCart = create(
         return toast('Item already in cart.');
       }
 
-      const newItem: CartItem = { ...data, quantity: 1 };
+      const newItem: CartItem = { ...data, quantity: 1, taille: ''};
       set({ items: [...get().items, newItem] });
       toast.success('Item added to cart.');
     },
@@ -45,6 +47,15 @@ const useCart = create(
       set({ items: updatedItems });
       
     },
+
+    updateTaille: (id: string, taille: string) => {
+      const updatedItems = get().items.map((item) =>
+        item.id === id ? { ...item, taille } : item
+      );
+      set({ items: updatedItems });
+      
+    },
+
   }), 
   
   {
