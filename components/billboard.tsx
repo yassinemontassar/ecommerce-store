@@ -33,10 +33,10 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
     >
       {data.map((billboard) => (
         <SwiperSlide key={billboard.id}>
-          <div
-            className="h-[400px] object-contain  relative bg-cover bg-no-repeat bg-center"
-            style={{ backgroundImage: `url(${billboard.imageUrl})` }}
-          >
+  <div
+  className="h-[500px] relative bg-no-repeat bg-center"
+  style={{ backgroundImage: `url(${billboard.imageUrl})` }}
+>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
               <p className="font-bold text-3xl sm:text-5xl lg:text-6xl sm:max-w-xl max-w-xs">{billboard.label}</p>
             </div>
