@@ -52,9 +52,9 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({ sizes, colors, prices }) 
             </div>
             {/* Render the filters */}
             <div className="p-4">
-              <Filter valueKey="sizeId" name="Sizes" data={sizes} onSelect={handleFilterSelection} />
-              <Filter valueKey="colorId" name="Colors" data={colors} onSelect={handleFilterSelection} />
-              <Filter valueKey="price" name="Prices" data={prices} onSelect={handleFilterSelection} />
+              {/* <Filter valueKey="sizeId" name="Sizes" data={sizes} onSelect={handleFilterSelection} /> */}
+              <Filter valueKey="colorId" name="Coleur" data={colors} onSelect={handleFilterSelection} />
+              <Filter valueKey="price" name="Prix" data={prices} onSelect={handleFilterSelection} />
             </div>
           </Dialog.Panel>
         </div>

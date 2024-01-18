@@ -30,7 +30,7 @@ const SearchBar: React.FC = () => {
     <div className="hidden md:flex ml-auto  items-center gap-x-2">
       <input
         type="text"
-        placeholder="Search..."
+        placeholder="Rechercher..."
         value={searchQuery}
         onChange={handleInputChange}
         // onKeyPress={handleKeyPress}

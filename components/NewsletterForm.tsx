@@ -27,11 +27,42 @@ const useConvertToPDF = (): ConvertToPDFResult => {
         email: email,
         token: getKey()
       });
-      toast.success("We have sent a verification link to your mail: "+email);
-      // window.location = response.data.url;
+      if (response.status === 200 && response.data === "Subscriber exists") {
+        // Handle the case where the email already exists without treating it as an error
+        toast.error('L\'adresse e-mail existe déjà.');
+      } else {
+      toast('Nous avons envoyé un lien de vérification à votre adresse e-mail: ' +email, {
+        duration: 4000,
+        position: 'bottom-right',
+      
+        // Styling
+        style: {
+          background: '#333',      // Background color
+          color: '#fff',           // Text color
+          border: '2px solid #00f', // Border style
+          borderRadius: '8px',     // Border radius
+        },
+        className: '',
+      
+        // Custom Icon
+        icon: '✔️',
+      
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: '#00ff00',   // Primary color (default is black)
+          secondary: '#fff',    // Secondary color (default is white)
+        },
+      
+        // Aria
+        ariaProps: {
+          role: 'status',
+          'aria-live': 'polite',
+        },
+      });
+    }
     } catch (error) {
       console.error("Error during verification:", error);
-      toast.error("Email already exists")
+      toast.error('Une erreur s\'est produite lors de la vérification.')
     }
    finally {
     setButtonDisabled(false); // Enable the button after the process is done
@@ -57,7 +88,34 @@ const NewsletterForm = () => {
           const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/subscriber`, {
             email: email,
           });
-          toast.success('Your email (' + email + ') is now verified!');
+          toast('Félicitations! Votre adresse e-mail a été vérifiée avec succès: ' + email, {
+            duration: 5000,
+            position: 'bottom-right',
+          
+            // Styling
+            style: {
+              background: '#28a745',    // Background color (green for success)
+              color: '#fff',             // Text color
+              border: '2px solid #218838', // Border style
+              borderRadius: '8px',       // Border radius
+            },
+            className: '',
+          
+            // Custom Icon
+            icon: '🎉', // You can choose a different emoji or icon
+          
+            // Change colors of success/error/loading icon
+            iconTheme: {
+              primary: '#fff',       // Primary color (default is black)
+              secondary: '#28a745',  // Secondary color (green for success)
+            },
+          
+            // Aria
+            ariaProps: {
+              role: 'status',
+              'aria-live': 'polite',
+            },
+        });
           setShowConfetti(true);
         } catch (error) {
           console.error("Error during verification:", error);
@@ -77,8 +135,8 @@ const NewsletterForm = () => {
             
   <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
     <div className="mx-auto max-w-md">
-      <strong className="block text-center text-xl font-bold text-gray-900 sm:text-3xl">
-        Want us to email you with the latest news?
+      <strong className="m-2 block text-center text-xl font-bold text-gray-900 sm:text-3xl">
+      SINSCRIRE AUX NEWSLETTERS
       </strong>
       {showConfetti && (
           <Confetti
@@ -96,7 +154,7 @@ const NewsletterForm = () => {
             className="w-full rounded-full border-gray-200 bg-gray-100 p-4 pe-32 text-sm font-medium"
             id="email"
             type="email"
-            placeholder="john@doe.com"
+            placeholder="Saisissez votre email"
             required
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -105,7 +163,7 @@ const NewsletterForm = () => {
             disabled={isButtonDisabled}
             className="animate-pulse absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700"
           >
-            Subscribe
+            SOUSCRIRE
           </Button>
             {/* Confetti */}
         

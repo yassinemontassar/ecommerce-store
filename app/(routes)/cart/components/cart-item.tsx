@@ -72,7 +72,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
           </div>
           <div>
   <div className="flex mt-2 items-center">
-    <label className="text-gray-500">Quantity:</label>
+    <label className="text-gray-500">Quantite:</label>
     <div className="ml-2 p-1  border-gray-300 rounded-md">
       <input
         required

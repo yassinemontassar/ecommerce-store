@@ -1,10 +1,7 @@
 import { create } from 'zustand';
 import { toast } from 'react-hot-toast';
 import { persist, createJSONStorage } from 'zustand/middleware';
-
 import { Product } from '@/types';
-import { AlertTriangle } from 'lucide-react';
-
 interface CartItem extends Product {
   quantity: number;
   taille: string;
@@ -27,16 +24,16 @@ const useCart = create(
       const existingItem = currentItems.find((item) => item.id === data.id);
 
       if (existingItem) {
-        return toast('Item already in cart.');
+        return toast.error(`${data.name} déjà dans le panier`);
       }
 
       const newItem: CartItem = { ...data, quantity: 1, taille: ''};
       set({ items: [...get().items, newItem] });
-      toast.success('Item added to cart.');
+      toast.success(`${data.name} ajouté au panier`);
     },
     removeItem: (id: string) => {
       set({ items: [...get().items.filter((item) => item.id !== id)] });
-      toast.success('Item removed from cart.');
+      toast.success('Article retiré du panier');
     },
     removeAll: () => set({ items: [] }),
 

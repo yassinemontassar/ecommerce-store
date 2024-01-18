@@ -19,7 +19,9 @@ const useKeyManager = create(
           return currentState;
         }
 
-        const generatedKey = new Date().getTime().toString(36);
+        const timestamp = new Date().getTime();
+const randomPart = Math.floor(Math.random() * 10000); // Adjust the range as needed
+const generatedKey = `${timestamp.toString(36)}_${randomPart.toString(36)}`;
         return { ...currentState, key: generatedKey };
       });
     },

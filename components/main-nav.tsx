@@ -63,7 +63,7 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
       <DropdownMenuContent className="dropdown-menu">
         <DropdownMenuLabel>
           <div className="flex flex-col items-center space-y-2 lg:space-y-4 mx-6">
-            Categories
+          Catégories
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />

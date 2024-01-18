@@ -94,7 +94,7 @@ const HamburgerMenu: React.FC<MainNavProps> = ({ data }) => {
                 <div className="flex ml-auto  items-center">
                 <input 
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Rechercher..."
                   value={searchQuery}
                   onChange={handleInputChange}
                 className="flex items-center border border-gray-300 px-1 py-1 w-40  rounded-full focus:outline-none focus:ring focus:border-blue-300"
