@@ -1,36 +1,34 @@
 import { Urbanist } from 'next/font/google'
 
+
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import './globals.css'
 import ModalProvider from '@/providers/modal-provider'
 import ToastProvider from '@/providers/toast-provider'
 import NewsletterForm from '@/components/NewsletterForm'
+import { Metadata } from 'next'
 
 const font = Urbanist({ subsets: ['latin'] })
 
-export const metadata = { 
- title: 'RoundaStore - Votre boutique locale en Tunisie',
- description: 'RoundaStore - Votre magasin local tunisien, lendroit pour tous vos achats.',
- og: {
-    title: 'RoundaStore - Votre boutique locale en Tunisie',
-    description: 'RoundaStore - Votre magasin local tunisien, lendroit pour tous vos achats.',
-    image: 'https://res.cloudinary.com/dtquv74c5/image/upload/v1705261354/xix8orq5pco1mlmpjfid.jpg',
-    type: 'website',
- },
- twitter: {
-    card: 'summary_large_image',
-    site: '@roundastore',
- },
+export const metadata: Metadata = {
+  title: {
+    default:'RoundaStore - Votre boutique locale en Tunisie',
+    template:"%s - RoundaStore - Votre boutique locale en Tunisie'"
+  },
+  description: 'RoundaStore - Votre magasin local tunisien, lendroit pour tous vos achats.',
+  twitter: {
+    card: "summary_large_image"
+  }
 };
 
 export default function RootLayout({
- children,
+  children,
 }: {
- children: React.ReactNode
+  children: React.ReactNode
 }) {
- return (
-    <html lang="fr">
+  return (
+    <html lang="en">
       <body className={font.className}>
         <ModalProvider />
         <ToastProvider />
@@ -40,5 +38,5 @@ export default function RootLayout({
         <NewsletterForm />
       </body>
     </html>
- )
+  )
 }

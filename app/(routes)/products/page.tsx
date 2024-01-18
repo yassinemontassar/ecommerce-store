@@ -9,6 +9,11 @@ import ProductCard from "@/components/ui/product-card";
 import PaginationControls from "@/components/PaginationControls";
 import MobileFilters from "../category/[categoryId]/components/mobile-filters";
 import Filter from "../category/[categoryId]/components/filter";
+import { Metadata } from "next";
+
+export const metadata: Metadata={
+  title:"Produits"
+}
 
 export const revalidate = 0;
 

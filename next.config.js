@@ -1,11 +1,10 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: [
-            "res.cloudinary.com"
-        ]
-    }
-
-}
-
-module.exports = nextConfig
+      domains: ["res.cloudinary.com"]
+    },
+    env: {
+      metadataBase: 'http://rounda.duckdns.org/'
+    },
+  };
+  
+  module.exports = nextConfig;
