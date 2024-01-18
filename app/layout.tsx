@@ -9,7 +9,7 @@ import NewsletterForm from '@/components/NewsletterForm'
 
 const font = Urbanist({ subsets: ['latin'] })
 
-const metadata = {
+export const metadata = { 
  title: 'RoundaStore - Votre boutique locale en Tunisie',
  description: 'RoundaStore - Votre magasin local tunisien, lendroit pour tous vos achats.',
  og: {
