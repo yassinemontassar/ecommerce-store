@@ -4,11 +4,31 @@ import Gallery from "@/components/gallery";
 import Info from "@/components/info";
 import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container";
+import { Metadata } from "next";
 
 interface ProductPageProps {
     params: {
         productId: string;
     }
+}
+
+
+export async function generateMetadata({
+  params
+}: ProductPageProps): Promise<Metadata> {
+  const product = await getProduct(params.productId);
+  return {
+   title: product.name,
+   description: "Categorie:"+product.category.name,
+   openGraph: {
+    images: product.images.map((image) => ({
+      url: image.url,
+      height:1260,
+      width:230
+    })),
+   }
+  }
+
 }
 
 const ProductPage: React.FC<ProductPageProps> = async ({
