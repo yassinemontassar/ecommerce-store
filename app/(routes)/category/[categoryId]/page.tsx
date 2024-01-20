@@ -9,6 +9,7 @@ import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/ui/product-card";
 import MobileFilters from "./components/mobile-filters";
 import PaginationControls from "@/components/PaginationControls";
+import { Metadata } from "next";
 
 export const revalidate = 0;
 
@@ -24,6 +25,25 @@ interface CategoryPageProps {
         per_page: string;
     }
 }
+
+
+export async function generateMetadata({
+    params
+  }: CategoryPageProps): Promise<Metadata> {
+    const category = await getCategory(params.categoryId);
+    return {
+     title: category.name,
+     description: "Page Categorie",
+     openGraph: {
+      images: [
+        {
+            url:category.billboard.imageUrl
+        }
+      ]
+     }
+    }
+  
+  }
 
 const CategoryPage: React.FC<CategoryPageProps>= async({
     params,
