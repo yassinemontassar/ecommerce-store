@@ -26,8 +26,16 @@ const Currency: React.FC<CurrencyProps> = ({
 
   const formattedValue = formatter.format(Number(value));
   const currencySymbol = formattedValue.replace(/[0-9.,]/g, '').trim();
-  const numericValue = formattedValue.replace(/[^0-9.,]/g, '').trim();
+  let numericValue = formattedValue.replace(/[^0-9.,]/g, '').trim();
 
+  // Check if the numeric value is an integer
+  const isInteger = Number.isInteger(Number(numericValue));
+
+  // Remove trailing zeros if it's an integer
+  if (isInteger) {
+    numericValue = String(Number(numericValue));
+  }
+  numericValue = numericValue.replace('.', ',');
   return ( 
     <div className="font-semibold">
       {numericValue} {currencySymbol}
