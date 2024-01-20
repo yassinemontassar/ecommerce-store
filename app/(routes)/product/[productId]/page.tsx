@@ -13,10 +13,7 @@ interface ProductPageProps {
 }
 
 
-// export async function generateStaticParams() {
-//   const products = await getProducts();
-//   return products.map(({id})=> id);
-// }
+
 
 export async function generateMetadata({
   params
@@ -60,4 +57,14 @@ const ProductPage: React.FC<ProductPageProps> = async ({
         </div>
     );
 }
+
+
+export async function generateStaticParams() {
+  const products = await getProducts();
+  return products.map((product) => ({
+    productId: product.id.toString(),
+  }));
+}
+
+
 export default ProductPage;

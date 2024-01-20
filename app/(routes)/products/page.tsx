@@ -15,7 +15,6 @@ export const metadata: Metadata={
   title:"Produits"
 }
 
-export const revalidate = 0;
 
 interface CategoryPageProps {
   params: {
