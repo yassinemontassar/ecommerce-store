@@ -97,7 +97,7 @@ const HamburgerMenu: React.FC<MainNavProps> = ({ data }) => {
                   placeholder="Rechercher..."
                   value={searchQuery}
                   onChange={handleInputChange}
-                className="flex items-center border border-gray-300 px-1 py-1 w-40  rounded-full focus:outline-none focus:ring focus:border-blue-300"
+                className="flex items-center border border-gray-300 px-1 py-1 w-44  rounded-full focus:outline-none focus:ring focus:border-blue-300"
                 />
                  <SearchIcon
                       onClick={handleSearchClick}
