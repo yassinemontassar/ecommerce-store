@@ -11,7 +11,8 @@ const Navbar = async () => {
  
 
   return ( 
-    <div className="border-b">
+    <div className="sticky top-0 z-10" >
+    <div className="border-b-2">
       <ScrollToTopButton />
       <Container>
       <header className="bg-white">
@@ -48,6 +49,7 @@ const Navbar = async () => {
 </header>
       </Container>
     </div> 
+    </div>
   );
 }; 
  

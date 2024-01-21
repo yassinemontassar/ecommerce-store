@@ -67,41 +67,49 @@ const HamburgerMenu: React.FC<MainNavProps> = ({ data }) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+          <Menu.Items className="fixed right-0 mt-4 w-9/12 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none h-screen">
           <p className="flex flex-col items-center text-xl text-zinc-800 bg-slate-200">Categories:</p>
-            <div className="flex flex-col items-center px-1 py-1">
+            <div className="flex flex-col items-center px-1 py-1 ">
               {routes.map((route) => (
-                <Menu.Item key={route.href}>
-                
-                    <div>
+                <Menu.Item key={route.href} as={Fragment}>
+                    {({ close }) => (
+                    <div className="border-b w-full text-center">
                       <Link
                         key={route.href}
                         href={route.href}
+                        onClick={(e) => {
+                          
+                          close()
+                        }}
                         className={cn(
-                          " text-sm font-medium transition-colors hover:text-black",
-                          route.active ? "text-black " : "text-neutral-500 "
+                          "text-lg font-semibold transition-colors hover:text-black",
+                          route.active ? "text-black animate-pulse " : "text-neutral-500 "
                         )}
                       >
                         {route.label}
                       </Link>
                     </div>
-
+                    )}
                 </Menu.Item>
               ))}
             </div>  
-            <p className="flex flex-col items-center text-xl text-zinc-800 bg-slate-200">Search</p>
-            <div className="flex flex-col items-center px-1 py-1">
-                <div className="flex ml-auto  items-center">
+            <p className="flex flex-col items-center text-xl text-zinc-800 bg-slate-200 -mt-2">Search</p>
+            <div className="flex flex-col items-start px-2 py-4">
+                <div className="flex  items-center">
                 <input 
                   type="text"
                   placeholder="Rechercher..."
                   value={searchQuery}
                   onChange={handleInputChange}
-                className="flex items-center border border-gray-300 px-1 py-1 w-44  rounded-full focus:outline-none focus:ring focus:border-blue-300"
+                className=" border border-gray-300 px-1 py-1 w-fit  rounded-full focus:outline-none focus:ring focus:border-blue-300 "
                 />
+                <div className="px-4">
                  <SearchIcon
                       onClick={handleSearchClick}
+                      size={33}
+                      
                  />
+                 </div>
             </div>  
             </div>
           </Menu.Items>
