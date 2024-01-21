@@ -5,6 +5,7 @@ import Info from "@/components/info";
 import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 interface ProductPageProps {
     params: {
@@ -17,13 +18,17 @@ export async function generateStaticParams() {
   return products.map((product) => ({
     productId: product.id.toString(),
   }));
-}
+} 
+
 
 
 export async function generateMetadata({
   params
 }: ProductPageProps): Promise<Metadata> {
   const product = await getProduct(params.productId);
+  if (!product) {
+    return notFound(); // Returning notFound() if the product is not found
+  }
   return {
    title: product.name,
    description: "Categorie:"+product.category.name,
@@ -37,6 +42,9 @@ export async function generateMetadata({
   }
 
 }
+// const delay = (ms: number) => {
+//   return new Promise((resolve) => setTimeout(resolve, ms));
+// };
 
 const ProductPage: React.FC<ProductPageProps> = async ({
     params
@@ -44,7 +52,11 @@ const ProductPage: React.FC<ProductPageProps> = async ({
     const product = await getProduct(params.productId);
     const suggestedProducts = await getProducts({
         categoryId: product?.category?.id
-    })
+        })
+        if (!product) {
+          return notFound(); // Returning notFound() if the product is not found
+        }
+   
     return (
         <div className="bg-white">
            <Container>
