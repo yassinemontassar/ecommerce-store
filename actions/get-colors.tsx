@@ -4,7 +4,7 @@ const URL = `${process.env.NEXT_PUBLIC_API_URL}/colors`;
 
 const getColors = async (): Promise<Color[]> => {
   try {
-     const res = await fetch(URL, {cache: 'no-store'});
+     const res = await fetch(URL);
   
     if (!res.ok) {
       throw new Error('Failed to fetch colors');

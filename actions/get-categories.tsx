@@ -4,7 +4,7 @@ const URL = `${process.env.NEXT_PUBLIC_API_URL}/categories`;
 
 const getCategories = async (): Promise<Category[]> => {
   try {
-     const res = await fetch(URL, {cache: 'no-store'});
+     const res = await fetch(URL);
     
    
     if (!res.ok) {
