@@ -54,7 +54,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({
         categoryId: product?.category?.id
         })
         if (!product) {
-          return notFound(); // Returning notFound() if the product is not found
+          return notFound(); 
         }
    
     return (
