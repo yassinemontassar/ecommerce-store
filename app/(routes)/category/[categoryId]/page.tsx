@@ -10,6 +10,7 @@ import ProductCard from "@/components/ui/product-card";
 import MobileFilters from "./components/mobile-filters";
 import PaginationControls from "@/components/PaginationControls";
 import { Metadata } from "next";
+import getCategories from "@/actions/get-categories";
 
 export const revalidate = 0;
 
@@ -25,6 +26,13 @@ interface CategoryPageProps {
         per_page: string;
     }
 }
+
+export async function generateStaticParams() {
+    const categories = await getCategories();
+    return categories.map((category) => ({
+        categoryId: category.id.toString(),
+    }));
+  } 
 
 
 export async function generateMetadata({

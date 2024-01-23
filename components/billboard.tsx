@@ -42,6 +42,7 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
             priority={true} // Use the priority prop to preload the image
             quality={50} // Use the quality prop to adjust the image quality and compression level
             className="relative"
+           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             
           />
           </div>

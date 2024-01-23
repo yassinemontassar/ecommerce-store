@@ -9,7 +9,6 @@ import ScrollToTopButton from "./ScrollToTopButton";
 import Link from "next/link";
 const Navbar = async () => {
   const categories = await getCategories(); 
- 
 
   return ( 
     <div className="sticky top-0 z-10" >
@@ -21,16 +20,15 @@ const Navbar = async () => {
   <Link href="/" shallow prefetch>
       <span className="sr-only">Home</span> 
       <Image
-        priority={true}
-        src="/logo.jpg"  
-        alt="Logo Alt Text"
-        width={50}      
-        height={50}    
-        unoptimized={true}
-        quality={50}
-        decoding="async"
-        data-nimg="1"
-      />
+    priority={true}
+    src="/logo.jpg"
+    alt="Logo Alt Text"
+    width={50}
+    height={50}
+    quality={50}
+    style={{color: "transparent"}}
+    className="bg-transparent"
+  />
       </Link>
     
 
