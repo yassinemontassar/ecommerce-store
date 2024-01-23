@@ -27,6 +27,9 @@ const Navbar = async () => {
         width={50}      
         height={50}    
         unoptimized={true}
+        quality={50}
+        decoding="async"
+        data-nimg="1"
       />
       </Link>
     
