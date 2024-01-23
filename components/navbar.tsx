@@ -6,6 +6,7 @@ import NavbarActions from "@/components/narvbar-actions";
 import SearchBar from "@/components/search"
 import HamburgerMenu from "./HamburgerMenu";
 import ScrollToTopButton from "./ScrollToTopButton";
+import Link from "next/link";
 const Navbar = async () => {
   const categories = await getCategories(); 
  
@@ -17,16 +18,18 @@ const Navbar = async () => {
       <Container>
       <header className="bg-white">
   <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-    <a className="block text-teal-600" href="/">
-      <span className="sr-only">Home</span>
+  <Link href="/" shallow prefetch>
+      <span className="sr-only">Home</span> 
       <Image
         priority={true}
-        src="/logo.jpg"  // Path to your logo in the "public" directory
+        src="/logo.jpg"  
         alt="Logo Alt Text"
-        width={50}       // Set the width of your logo
-        height={50}       // Set the height of your logo
+        width={50}      
+        height={50}    
+        unoptimized={true}
       />
-    </a>
+      </Link>
+    
 
     <div className="flex flex-1 items-center justify-end md:justify-between">
       <nav aria-label="Global" className="hidden md:block">
