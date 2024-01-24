@@ -6,7 +6,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const products = await getProducts();
 
     const productEntries: MetadataRoute.Sitemap = products.map(({id}) => ({
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/product/${id}}`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/product/${id}`,
         priority: 0.8,
         lastModified: new Date(),
         changeFrequency: 'weekly',
