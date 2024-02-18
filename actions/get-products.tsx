@@ -10,6 +10,7 @@ interface Query {
   sizeId?: string; 
   price?: string;
   isFeatured?: boolean;
+  isNew?: boolean;
 }
 
 const getProducts = async (query: Query = {}): Promise<Product[]> => {
@@ -22,10 +23,11 @@ const getProducts = async (query: Query = {}): Promise<Product[]> => {
       price: query.price,
       categoryId: query.categoryId,
       isFeatured: query.isFeatured,
+      isNew: query.isNew,
     },
   });
 
-  const res = await fetch(url);
+  const res = await fetch(url)
   return res.json();
 };
 

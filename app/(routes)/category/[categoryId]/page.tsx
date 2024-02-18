@@ -12,7 +12,6 @@ import PaginationControls from "@/components/PaginationControls";
 import { Metadata } from "next";
 import getCategories from "@/actions/get-categories";
 
-export const revalidate = 0;
 
 interface CategoryPageProps {
     params: {
