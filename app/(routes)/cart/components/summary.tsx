@@ -26,7 +26,34 @@ const Summary = () => {
   useEffect(() => {
     if (searchParams.get('success') !== null) {
       removeAll();
-      toast.success('Payment completed.');
+      toast('Merci pour votre commande! Nous vous contacterons bientôt.', {
+        duration: 4000,
+        position: 'bottom-right',
+      
+        // Styling
+        style: {
+          background: '#333',      // Background color
+          color: '#fff',           // Text color
+          border: '2px solid #00f', // Border style
+          borderRadius: '8px',     // Border radius
+        },
+        className: '',
+      
+        // Custom Icon
+        icon: '✔️',
+      
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: '#00ff00',   // Primary color (default is black)
+          secondary: '#fff',    // Secondary color (default is white)
+        },
+      
+        // Aria
+        ariaProps: {
+          role: 'status',
+          'aria-live': 'polite',
+        },
+      });
       setShowConfetti(true);
       
     }
@@ -126,11 +153,11 @@ const Summary = () => {
     
     <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
 
-      <h2 className="text-lg font-medium text-gray-900">Order summary</h2>
+      <h2 className="text-lg font-medium text-gray-900">Détails de la commande</h2>
 
       <div className="mt-6 space-y-4">
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <div className="text-base font-medium text-gray-900">Order total</div>
+          <div className="text-base font-medium text-gray-900">Prix total</div>
           <Currency value={totalPrice} />
         </div>
       </div>

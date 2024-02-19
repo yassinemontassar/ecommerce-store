@@ -209,7 +209,7 @@ const NewsletterForm = () => {
           </a>
 
 
-          <a
+          {/* <a
             className="text-gray-700 transition hover:text-gray-700/75"
             href="https://github.com/yassinemontassar/ecommerce-store"
             target="_blank"
@@ -224,7 +224,7 @@ const NewsletterForm = () => {
                 clipRule="evenodd"
               />
             </svg>
-          </a>
+          </a> */}
 
          
         </div>

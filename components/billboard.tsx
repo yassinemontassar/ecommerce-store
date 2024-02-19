@@ -34,7 +34,7 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
     >
       {data.map((billboard) => (
         <SwiperSlide key={billboard.id}>
-          <div  className="m-2 h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px] relative bg-no-repeat bg-center bg-cover">
+          <div  className="m-2 h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px] relative bg-no-repeat bg-center bg-cover border-4 border-gray-300 rounded-lg">
           <Image
             alt={billboard.label} // Use the billboard label as the alt text
             src={billboard.imageUrl} // Use the src prop to specify the image source
@@ -43,7 +43,6 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
             quality={50} // Use the quality prop to adjust the image quality and compression level
             className="relative"
            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            
           />
           </div>
            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">

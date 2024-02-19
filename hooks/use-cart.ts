@@ -24,12 +24,13 @@ const useCart = create(
       const existingItem = currentItems.find((item) => item.id === data.id);
 
       if (existingItem) {
-        return toast.error(`${data.name} déjà dans le panier`);
+        return toast.error(`${data.name} déjà dans le panier`, { position: 'bottom-center' });
+
       }
 
       const newItem: CartItem = { ...data, quantity: 1, taille: ''};
       set({ items: [...get().items, newItem] });
-      toast.success(`${data.name} ajouté au panier`);
+      toast.success(`${data.name} ajouté au panier`, { position: 'bottom-center' });
     },
     removeItem: (id: string) => {
       set({ items: [...get().items.filter((item) => item.id !== id)] });

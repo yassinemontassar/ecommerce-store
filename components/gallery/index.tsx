@@ -6,8 +6,7 @@ import { Image as ImageType } from "@/types";
 import GalleryTab from "./gallery-tab";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
-import SwiperCore from "swiper";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import "swiper/css/bundle";
 
 interface GalleryProps {
@@ -28,6 +27,10 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
+          navigation={{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          }}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
@@ -35,7 +38,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
           pagination={{
             type: "progressbar",
           }}
-          modules={[Pagination, Autoplay]}
+          modules={[Pagination, Autoplay, Navigation]}
           className="mySwiper"
         >
           {images.map((image) => (
@@ -49,9 +52,12 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
                   className="object-cover object-center"
                 />
               </div>
+              <div className="swiper-button-prev"></div>
+<div className="swiper-button-next"></div>
             </SwiperSlide>
           ))}
         </Swiper>
+        
       </Tab.Panels>
     </Tab.Group>
   );

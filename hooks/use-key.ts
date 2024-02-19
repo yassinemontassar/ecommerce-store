@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import toast from "react-hot-toast";
+import { v4 as uuidv4 } from 'uuid';
 interface KeyStore {
   key: string | null;
   addKey: () => void;
@@ -19,9 +20,9 @@ const useKeyManager = create(
           return currentState;
         }
 
-        const timestamp = new Date().getTime();
-const randomPart = Math.floor(Math.random() * 10000); // Adjust the range as needed
-const generatedKey = `${timestamp.toString(36)}_${randomPart.toString(36)}`;
+//         const timestamp = new Date().getTime();
+// const randomPart = Math.floor(Math.random() * 10000); 
+const generatedKey = uuidv4();
         return { ...currentState, key: generatedKey };
       });
     },
