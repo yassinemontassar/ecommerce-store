@@ -34,7 +34,7 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
     >
       {data.map((billboard) => (
         <SwiperSlide key={billboard.id}>
-          <div  className="m-2 h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px] relative bg-no-repeat bg-center bg-cover border-4 border-gray-300 rounded-lg">
+          <div  className="m-2 h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] relative bg-no-repeat bg-center bg-cover border-4 border-gray-300 rounded-lg">
           <Image
             alt={billboard.label} // Use the billboard label as the alt text
             src={billboard.imageUrl} // Use the src prop to specify the image source
