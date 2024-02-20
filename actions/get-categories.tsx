@@ -4,7 +4,9 @@ const URL = `${process.env.NEXT_PUBLIC_API_URL}/categories`;
 
 const getCategories = async (): Promise<Category[]> => {
   try {
-     const res = await fetch(URL);
+     const res = await fetch(URL, {
+      next: { revalidate: 300 },
+     });
     
    
     if (!res.ok) {
