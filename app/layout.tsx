@@ -8,7 +8,7 @@ import ModalProvider from '@/providers/modal-provider'
 import ToastProvider from '@/providers/toast-provider'
 import NewsletterForm from '@/components/NewsletterForm'
 import { Metadata } from 'next'
-import {  GoogleTagManager } from '@next/third-parties/google'
+import Script from 'next/script'
 const font = Urbanist({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -32,12 +32,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
+      <Script
+     async src="https://www.googletagmanager.com/gtag/js?id=G-KSPJ4QEB0J"
+      ></Script>
+      <Script id='google-analytics'>
+        {`
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+       
+         gtag('config', 'G-KSPJ4QEB0J');
+        `}
+      </Script>
       <body className={font.className}>
         <ModalProvider />
         <ToastProvider />
         <Navbar />
         {children}
-        <GoogleTagManager gtmId="G-KSPJ4QEB0J" />
         <Footer />
         <NewsletterForm />
       </body>
