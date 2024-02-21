@@ -8,7 +8,7 @@ import ModalProvider from '@/providers/modal-provider'
 import ToastProvider from '@/providers/toast-provider'
 import NewsletterForm from '@/components/NewsletterForm'
 import { Metadata } from 'next'
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 const font = Urbanist({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ export default function RootLayout({
         <ToastProvider />
         <Navbar />
         {children}
-        <GoogleTagManager gtmId='GTM-M6H64GT8' />
+        <GoogleAnalytics gaId='G-KSPJ4QEB0J' />
         <Footer />
         <NewsletterForm />
       </body>
