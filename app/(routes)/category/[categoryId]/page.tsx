@@ -11,6 +11,7 @@ import MobileFilters from "./components/mobile-filters";
 import PaginationControls from "@/components/PaginationControls";
 import { Metadata } from "next";
 import getCategories from "@/actions/get-categories";
+import { notFound } from "next/navigation";
 
 
 interface CategoryPageProps {
@@ -38,6 +39,9 @@ export async function generateMetadata({
     params
   }: CategoryPageProps): Promise<Metadata> {
     const category = await getCategory(params.categoryId);
+    if (!category) {
+        return notFound(); 
+      }
     return {
      title: category.name,
      description: "Page Categorie",
