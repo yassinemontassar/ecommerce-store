@@ -4,7 +4,9 @@ const URL = `${process.env.NEXT_PUBLIC_API_URL}/sizes`;
 
 const getSizes = async (): Promise<Size[]> => {
   try {
-     const res = await fetch(URL);
+     const res = await fetch(URL, {
+      next: { revalidate: 60 },
+    });
     
     if (!res.ok) {
       throw new Error('Failed to fetch sizes');

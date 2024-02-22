@@ -34,7 +34,7 @@ const PaginationControls: FC<PaginationControlsProps> = (
           router.push(`?page=${Number(page) - 1}&per_page=${per_page}`,{ scroll: false });
         }}
       >
-        Prev Page
+        Précédent
       </Button>
 
       <div>
@@ -50,7 +50,7 @@ const PaginationControls: FC<PaginationControlsProps> = (
           router.push(`?page=${Number(page) + 1}&per_page=${per_page}`,{ scroll: false });
         }}
       >
-        Next Page
+        Suivant 
       </Button>
     </div>
   );

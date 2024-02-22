@@ -23,8 +23,8 @@ const ProductListTest: React.FC<ProductListProps> = ({
                 pagination={false}
                 loop={true}
                 autoplay={{
-                    delay: 1000, // time between transitions in ms
-                    disableOnInteraction: false, // disable autoplay when user interacts with the slider
+                    delay: 1500, // time between transitions in ms
+                    disableOnInteraction: true, // disable autoplay when user interacts with the slider
                 }}
                 slidesPerView={1}
                 spaceBetween={10}
