@@ -68,7 +68,7 @@ const HamburgerMenu: React.FC<MainNavProps> = ({ data }) => {
           leaveTo="transform opacity-0 scale-95"
         >
           <Menu.Items className="fixed right-0 mt-4 w-9/12 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none h-screen">
-          <p className="flex flex-col items-center text-xl text-zinc-800 bg-slate-200">Categories:</p>
+          <p className="flex flex-col items-center text-xl text-zinc-800 bg-slate-200">Catégories:</p>
             <div className="flex flex-col items-center px-1 py-1 ">
               {routes.map((route) => (
                 <Menu.Item key={route.href} as={Fragment}>
@@ -93,12 +93,12 @@ const HamburgerMenu: React.FC<MainNavProps> = ({ data }) => {
                 </Menu.Item>
               ))}
             </div>  
-            <p className="flex flex-col items-center text-xl text-zinc-800 bg-slate-200 -mt-2">Search</p>
+            <p className="flex flex-col items-center text-xl text-zinc-800 bg-slate-200 -mt-2">Recherche</p>
             <div className="flex flex-col items-start px-2 py-4">
                 <div className="flex  items-center">
                 <input 
                   type="text"
-                  placeholder="Rechercher..."
+                  placeholder=""
                   value={searchQuery}
                   onChange={handleInputChange}
                 className=" border border-gray-300 px-1 py-1 w-fit  rounded-full focus:outline-none focus:ring focus:border-blue-300 "

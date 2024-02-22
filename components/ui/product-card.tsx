@@ -49,7 +49,7 @@ const ProductCard: React.FC<ProductCard> = ({
                 />
                 { data.discount &&
                 <div className="absolute top-0 right-0 bg-gradient-to-r from-pink-500 to-purple-600 text-white py-1 px-2 rounded-full shadow-lg transform -rotate-6 hover:-rotate-12 transition-transform">
-      <span className="text-xs font-semibold">Discount</span> {data.discount} %
+      <span className="text-xs font-semibold">Remise</span> {data.discount} %
     </div> }
                 <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
                     <div className="flex gap-x-6 justify-center">
