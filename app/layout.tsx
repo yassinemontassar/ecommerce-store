@@ -13,7 +13,7 @@ import './globals.css'
 const font = Urbanist({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://rounda.duckdns.org'),
+  metadataBase: new URL('https://ecommerce-store-nu-taupe.vercel.app/'),
   title: {
     default:'RoundaStore - Impression sur tout support',
     template:"%s - RoundaStore - Impression sur tout support"

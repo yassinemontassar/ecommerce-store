@@ -3,7 +3,7 @@ const nextConfig = {
       domains: ["res.cloudinary.com"]
     },
     env: {
-      metadataBase: 'http://rounda.duckdns.org/'
+      metadataBase: 'https://ecommerce-store-nu-taupe.vercel.app/'
     },
   };
   
