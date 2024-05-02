@@ -1,12 +1,13 @@
-import Image from "next/image";
-import MainNav from "@/components/main-nav";
-import Container from "@/components/ui/container";
 import getCategories from "@/actions/get-categories";
+import MainNav from "@/components/main-nav";
 import NavbarActions from "@/components/narvbar-actions";
-import SearchBar from "@/components/search"
+import SearchBar from "@/components/search";
+import Container from "@/components/ui/container";
+import Image from "next/image";
+import Link from "next/link";
+import { Suspense } from "react";
 import HamburgerMenu from "./HamburgerMenu";
 import ScrollToTopButton from "./ScrollToTopButton";
-import Link from "next/link";
 const Navbar = async () => {
   const categories = await getCategories(); 
 
@@ -39,7 +40,9 @@ const Navbar = async () => {
         </ul>
       </nav>
       <div> 
+          <Suspense>
           <SearchBar />
+          </Suspense>
         </div>
       <div className="flex items-center gap-4">
         <div className="sm:flex sm:gap-4">

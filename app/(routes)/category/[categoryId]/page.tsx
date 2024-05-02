@@ -9,6 +9,7 @@ import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/ui/product-card";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import Filter from "./components/filter";
 import MobileFilters from "./components/mobile-filters";
 
@@ -93,12 +94,14 @@ const CategoryPage: React.FC<CategoryPageProps>= async({
                                 name="Sizes"
                                 data={sizes}
                             /> */}
+                            <Suspense>
                             <Filter 
                                 valueKey="colorId"
                                 name="Coleur"
                                 data={colors}
                             />
                              <Filter valueKey="price" name="Prix" data={prices} />
+                             </Suspense>
                         </div>
                         <div className="mt-6 lg:col-span-4 lg:mt-0">
                             {products.length === 0 && <NoResults />}
@@ -111,11 +114,13 @@ const CategoryPage: React.FC<CategoryPageProps>= async({
                                     />
                                 ))}
                             </div>
+                            <Suspense>
                             <PaginationControls
         hasNextPage={end < products.length}
         hasPrevPage={start > 0}
         totalPages={totalPages}
       />
+      </Suspense>
                         </div>
                     </div>
                 </div>

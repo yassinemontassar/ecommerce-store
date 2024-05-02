@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
 import Button from "@/components/ui/button";
 import Currency from "@/components/ui/currency";
-import useCart from "@/hooks/use-cart";
 import CustomModal from "@/components/ui/customModal";
-import toast from "react-hot-toast";
+import useCart from "@/hooks/use-cart";
+import axios from "axios";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
-import { Fingerprint } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Summary = () => {
   const searchParams = useSearchParams();

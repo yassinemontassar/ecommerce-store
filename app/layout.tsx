@@ -1,14 +1,15 @@
 import { Urbanist } from 'next/font/google'
 
 
-import Navbar from '@/components/navbar'
+import NewsletterForm from '@/components/NewsletterForm'
 import Footer from '@/components/footer'
-import './globals.css'
+import Navbar from '@/components/navbar'
 import ModalProvider from '@/providers/modal-provider'
 import ToastProvider from '@/providers/toast-provider'
-import NewsletterForm from '@/components/NewsletterForm'
-import { Metadata } from 'next'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Metadata } from 'next'
+import { Suspense } from 'react'
+import './globals.css'
 const font = Urbanist({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -39,7 +40,9 @@ export default function RootLayout({
         {children}
         <GoogleAnalytics gaId='G-KSPJ4QEB0J' />
         <Footer />
+        <Suspense>
         <NewsletterForm />
+        </Suspense>
       </body>
     </html>
   )

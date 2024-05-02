@@ -2,13 +2,14 @@ import getCategory from "@/actions/get-category";
 import getColors from "@/actions/get-colors";
 import getProducts from "@/actions/get-products";
 import getSizes from "@/actions/get-sizes";
+import PaginationControls from "@/components/PaginationControls";
 import Container from "@/components/ui/container";
 import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/ui/product-card";
-import PaginationControls from "@/components/PaginationControls";
-import MobileFilters from "../category/[categoryId]/components/mobile-filters";
-import Filter from "../category/[categoryId]/components/filter";
 import { Metadata } from "next";
+import { Suspense } from "react";
+import Filter from "../category/[categoryId]/components/filter";
+import MobileFilters from "../category/[categoryId]/components/mobile-filters";
 
 export const metadata: Metadata={
   title:"Produits"
@@ -66,8 +67,10 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
             <MobileFilters sizes={sizes} colors={colors} prices={prices} />
             <div className="hidden lg:block">
               {/* <Filter valueKey="sizeId" name="Sizes" data={sizes} /> */}
+              <Suspense>
               <Filter valueKey="colorId" name="Coleurs" data={colors} />
               <Filter valueKey="price" name="Prix" data={prices} />
+              </Suspense>
             </div>
             <div className="mt-6 lg:col-span-4 lg:mt-0">
               {products.length === 0 && <NoResults />}
@@ -76,11 +79,13 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
                   <ProductCard key={item.id} data={item} />
                 ))}
               </div>
+              <Suspense>
               <PaginationControls
                 hasNextPage={end < products.length}
                 hasPrevPage={start > 0}
                 totalPages={totalPages}
               />
+              </Suspense>
             </div>
           </div>
         </div>
