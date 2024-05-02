@@ -2,16 +2,15 @@ import getCategory from "@/actions/get-category";
 import getColors from "@/actions/get-colors";
 import getProducts from "@/actions/get-products";
 import getSizes from "@/actions/get-sizes";
+import PaginationControls from "@/components/PaginationControls";
 import Billboard from "@/components/billboard";
 import Container from "@/components/ui/container";
-import Filter from "./components/filter";
 import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/ui/product-card";
-import MobileFilters from "./components/mobile-filters";
-import PaginationControls from "@/components/PaginationControls";
 import { Metadata } from "next";
-import getCategories from "@/actions/get-categories";
 import { notFound } from "next/navigation";
+import Filter from "./components/filter";
+import MobileFilters from "./components/mobile-filters";
 
 
 interface CategoryPageProps {
@@ -27,12 +26,12 @@ interface CategoryPageProps {
     }
 }
 
-export async function generateStaticParams() {
-    const categories = await getCategories();
-    return categories.map((category) => ({
-        categoryId: category.id.toString(),
-    }));
-  } 
+// export async function generateStaticParams() {
+//     const categories = await getCategories();
+//     return categories.map((category) => ({
+//         categoryId: category.id.toString(),
+//     }));
+//   } 
 
 
 export async function generateMetadata({
