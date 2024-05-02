@@ -26,12 +26,6 @@ interface CategoryPageProps {
     }
 }
 
-// export async function generateStaticParams() {
-//     const categories = await getCategories();
-//     return categories.map((category) => ({
-//         categoryId: category.id.toString(),
-//     }));
-//   } 
 
 
 export async function generateMetadata({
